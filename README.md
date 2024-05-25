@@ -1,6 +1,12 @@
 # aindy AI Helpers
 
-`aindy AI Helpers` is a Visual Studio Code extension designed to enhance your development workflow by providing tools for splitting content from files into manageable chunks and creating detailed file and folder structures for AI prompts. This can be particularly useful when working with large projects and AI models that have input size limitations.
+`aindy AI Helpers` is a VSCode extension that I wrote in the early days of GPT (January 2022) to generate code-related parts (chunks) of my projects for instructing the AI.
+
+Since I use this tool daily, I decided it was time to share it, hoping others will find it as useful as I do.
+
+The token estimation feature was particularly handy with GPT-3.5 and its 4096 token limit. However, with GPT-4 and its 128k token limit, the default setting for `Include Token Info` is now set to `false` and the `Tokens Before Splitting` is set to `16000`, which works for me.
+
+I am a big fan of prompting feature-specific or bug-related code content that can be quickly generated with a right-click. This approach avoids overwhelming the AI with too much information and keeps the focus on a single task at a time.
 
 ## Features
 
@@ -66,11 +72,12 @@ This extension contributes the following settings:
 There are currently no known issues. Please report any issues you encounter on the [GitHub issues page](https://github.com/aindy-eu/vscode-ai-helpers/issues).
 
 ## Release Notes
-### 1.0.0
 
-- Initial release of `aindy AI Helpers`.
-- Feature: Split content from files into manageable chunks.
-- Feature: Create detailed file and folder structure for AI prompts.
+## Version 1.0.0 - 2024-05-25
 
+### Highlights
+- **Initial Release**: We are excited to launch `aindy AI Helpers`, a powerful VS Code extension that helps you split content from files into manageable chunks and generate detailed file and folder structures for AI prompts.
+- **Chunk Splitting**: Automatically split the content of selected files into smaller, manageable chunks based on a specified token limit.
+- **Folder Structure Generation**: Create a detailed text representation of your project's file and folder structure, excluding specified files and directories.
 
-**Enjoy!**
+I hope you enjoy using this extension!
