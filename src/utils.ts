@@ -3,7 +3,13 @@ import * as path from 'path';
 import { TextEncoder, TextDecoder } from 'util';
 
 // Constants
-const invalidExtensions = [".DS_Store", ".exe", ".dll", ".bin", ".so", ".jpg", ".png", ".gif", ".ico", ".svg", ".mov", ".mp4"];
+const invalidExtensions = [
+  ".DS_Store", ".exe", ".dll", ".bin", ".so", ".jpg", ".jpeg", ".png", ".gif", ".ico", ".svg",
+  ".mov", ".mp4", ".mp3", ".avi", ".mkv", ".webm", ".wav", ".flac", ".ogg", ".pdf", ".doc",
+  ".docx", ".ppt", ".pptx", ".xls", ".xlsx", ".zip", ".rar", ".tar", ".gz", ".7z", ".iso",
+  ".log", ".tmp", ".bak", ".swp", ".class", ".jar", ".war"
+];
+
 const defaultConfig = {
   tokensBeforeSplitting: 8000,
   createFolderFileStructure: [],

@@ -3,10 +3,13 @@
   "displayName": "aindy AI Helpers",
   "description": "Split content from files into manageable chunks and create a detailed file and folder structure for AI prompts.",
   "version": "1.0.0",
+  "icon": "images/icon.png",
   "engines": {
     "vscode": "^1.89.0"
   },
   "categories": [
+    "Education",
+    "AI",
     "Other"
   ],
   "activationEvents": [],

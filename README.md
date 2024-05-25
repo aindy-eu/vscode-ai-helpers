@@ -1,71 +1,71 @@
-# aindy-ai-helpers README
+# aindy AI Helpers
 
-This is the README for your extension "aindy-ai-helpers". After writing up a brief description, we recommend including the following sections.
+`aindy AI Helpers` is a Visual Studio Code extension designed to enhance your development workflow by providing tools for splitting content from files into manageable chunks and creating detailed file and folder structures for AI prompts. This can be particularly useful when working with large projects and AI models that have input size limitations.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- **Split Content into Chunks**: Automatically split the content of selected files (and or folders with files) into smaller, manageable chunks based on a specified token limit.
 
-For example if there is an image subfolder under your extension project workspace:
+We ignore a bunch of files as default to avoid meaningless chunks.
 
-\!\[feature X\]\(images/feature-x.png\)
+```javascript
+const invalidExtensions = [
+    ".DS_Store", ".exe", ".dll", ".bin", ".so", ".jpg", ".jpeg", ".png", ".gif", ".ico", ".svg",
+    ".mov", ".mp4", ".mp3", ".avi", ".mkv", ".webm", ".wav", ".flac", ".ogg", ".pdf", ".doc",
+    ".docx", ".ppt", ".pptx", ".xls", ".xlsx", ".zip", ".rar", ".tar", ".gz", ".7z", ".iso",
+    ".log", ".tmp", ".bak", ".swp", ".class", ".jar", ".war"
+];
+```
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+- **Generate Folder Structure**: Create a detailed text representation of the file and folder structure in your workspace, excluding specified files and directories.
+
+### Screenshots
+
+#### Settings for our 2 helpers
+<img src="images/settings.png" alt="Settings" width="600"/>
+
+#### Select files and folders for generating the chunk(s)
+<img src="images/split-content.png" alt="Settings" width="400"/>
+
+#### Generate file and folder structure
+<img src="images/folder-structure.png" alt="Generate file and folder structure" width="600"/>
+
+## Usage
+
+### Split Content into Chunks
+1. Right-click on a file or folder in the Explorer view.
+2. Select `Generate Chunks from Files`.
+3. The content will be split into chunks based on the specified token limit and saved to the workspace root directory.
+
+### Generate Folder Structure
+1. Open the Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P` on macOS).
+2. Type `Generate Folder and File Structure` and select it.
+3. Enter the folder name (use `/` for the root directory).
+4. The folder structure will be generated and saved to `folder-structure.txt` in the workspace root.
+
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+There are no specific requirements or dependencies for this extension. It works out of the box with a standard VS Code setup.
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
 This extension contributes the following settings:
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+- `ai-helpers.tokensBeforeSplitting`: The number of characters before splitting into chunks. Default is 16000.
+- `ai-helpers.createFolderFileStructure`: Comma-separated list of files and folders to exclude when generating the folder structure. Default is `node_modules, .DS_Store, .git, .vscode, .expo, tmp`.
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+There are currently no known issues. Please report any issues you encounter on the [GitHub issues page](https://github.com/aindy-eu/aindy/ai-helpers/issues).
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
 ### 1.0.0
 
-Initial release of ...
+- Initial release of `aindy AI Helpers`.
+- Feature: Split content from files into manageable chunks.
+- Feature: Create detailed file and folder structure for AI prompts.
 
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
 
 **Enjoy!**
