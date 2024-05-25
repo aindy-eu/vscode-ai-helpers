@@ -49,19 +49,23 @@ const invalidExtensions = [
 
 There are no specific requirements or dependencies for this extension. It works out of the box with a standard VS Code setup.
 
+
 ## Extension Settings
 
 This extension contributes the following settings:
 
-- `ai-helpers.tokensBeforeSplitting`: The number of characters before splitting into chunks. Default is 16000.
 - `ai-helpers.createFolderFileStructure`: Comma-separated list of files and folders to exclude when generating the folder structure. Default is `node_modules, .DS_Store, .git, .vscode, .expo, tmp`.
+- `ai-helpers.includeTokenInfo`: Allows you to include token information in the chunk files. By default, this is set to false.
+- `ai-helpers.tokenEstimationFactor`: Allows you to configure the factor used to estimate the number of tokens per word in your code. By default, this is set to `4.5`, which has been found to work well for many codebases. However, you can adjust this setting based on your specific needs.
+- `ai-helpers.tokensBeforeSplitting`: The number of characters before splitting into chunks. Default is 16000.
+- `ai-helpers.useAdditionalFileTypes`: Comma-separated list of additional file extensions to include in the file processing. Example: `py, java`.
+
 
 ## Known Issues
 
 There are currently no known issues. Please report any issues you encounter on the [GitHub issues page](https://github.com/aindy-eu/vscode-ai-helpers/issues).
 
 ## Release Notes
-
 ### 1.0.0
 
 - Initial release of `aindy AI Helpers`.

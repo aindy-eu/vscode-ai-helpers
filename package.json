@@ -23,15 +23,30 @@
     "configuration": {
       "title": "aindy AI Helpers",
       "properties": {
+        "ai-helpers.createFolderFileStructure": {
+          "type": "string",
+          "default": "node_modules, .DS_Store, .git, .vscode, .expo, tmp",
+          "description": "Comma-separated list of files and folders to exclude when generating the folder structure."
+        },
+        "ai-helpers.includeTokenInfo": {
+          "type": "boolean",
+          "default": false,
+          "description": "Include token information in the chunk files"
+        },
+        "ai-helpers.tokenEstimationFactor": {
+          "type": "number",
+          "default": 4.5,
+          "description": "Factor used to estimate the number of tokens per word in code."
+        },
         "ai-helpers.tokensBeforeSplitting": {
           "type": "number",
           "default": 16000,
           "description": "The number of characters before splitting into chunks."
         },
-        "ai-helpers.createFolderFileStructure": {
+        "ai-helpers.useAdditionalFileTypes": {
           "type": "string",
-          "default": "node_modules, .DS_Store, .git, .vscode, .expo, tmp",
-          "description": "Comma-separated list of files and folders to exclude when generating the folder structure."
+          "default": "",
+          "description": "Comma-separated list of additional file extensions to include in the file processing. Example: 'py, java'"
         }
       }
     },

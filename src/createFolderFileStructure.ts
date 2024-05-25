@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import * as fs from "fs";
 import * as path from "path";
-import { getFolderStructure } from "./getFolderStructure"; // Adjust the import path as needed
+import { getFolderStructure } from "./getFolderStructure";
 
 // Function to create the folder structure and save it to a file
 export async function createFolderStructure() {

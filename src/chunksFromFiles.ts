@@ -1,6 +1,9 @@
 import * as vscode from 'vscode';
 import { TextDecoder, TextEncoder } from 'util';
-import { getMaxTokensPerChunk, getPrompt, getLargeFilePrompt, writeChunkToFile, estimateTokens, getPartContent, getRootPath, addFilesInDir, getRelativePath } from './utils';
+import { getMaxTokensPerChunk } from './utils/configUtils';
+import { writeChunkToFile, addFilesInDir } from './utils/fileUtils';
+import { estimateTokens, getPartContent } from './utils/chunkUtils';
+import { getRootPath, getRelativePath } from './utils/pathUtils';
 
 // Function to handle splitting files into chunks for AI prompts
 export async function chunksFromFiles(contextSelection: vscode.Uri, allSelections: vscode.Uri[]) {
@@ -11,8 +14,6 @@ export async function chunksFromFiles(contextSelection: vscode.Uri, allSelection
 
     // Configuration and initialization
     const maxTokensPerChunk = getMaxTokensPerChunk();
-    const prompt = getPrompt();
-    const largeFilePrompt = getLargeFilePrompt();
     const rootPath = getRootPath();
     if (!rootPath) {
         vscode.window.showInformationMessage('No root path defined');
@@ -48,7 +49,7 @@ export async function chunksFromFiles(contextSelection: vscode.Uri, allSelection
 
             // Write current chunk if adding this file would exceed the token limit
             if ((tokensForThisChunk + fileTokenCount) > maxTokensPerChunk) {
-                await writeChunkToFile(rootPath, chunkIndex, chunkContent, prompt, '-----');
+                await writeChunkToFile(rootPath, chunkIndex, chunkContent, '-----');
                 chunkContent = '';
                 chunkIndex++;
                 tokensForThisChunk = 0;
@@ -65,7 +66,7 @@ export async function chunksFromFiles(contextSelection: vscode.Uri, allSelection
 
     // Write remaining content to a new chunk
     if (chunkContent) {
-        await writeChunkToFile(rootPath, chunkIndex, chunkContent, prompt, '-----');
+        await writeChunkToFile(rootPath, chunkIndex, chunkContent, '-----');
         chunkIndex++;
     }
 
@@ -80,7 +81,7 @@ export async function chunksFromFiles(contextSelection: vscode.Uri, allSelection
         while (partContent) {
             const separator = nextPartContent ? '********' : '--------';
             chunkContent = `// ${relativePath}\n${partContent}\n${separator}\n`;
-            await writeChunkToFile(rootPath, chunkIndex, chunkContent, largeFilePrompt, separator, partIndex);
+            await writeChunkToFile(rootPath, chunkIndex, chunkContent, separator, partIndex);
             partIndex++;
             tokensForThisChunk = partTokenCount;
             totalTokenCount += partTokenCount;
@@ -92,9 +93,12 @@ export async function chunksFromFiles(contextSelection: vscode.Uri, allSelection
         chunkIndex++;
     }
 
-    // Update the first chunk file with the total token count
-    const firstChunkFilePath = `${rootPath}/Chunk-1.txt`;
-    const firstChunkFileContent = await vscode.workspace.fs.readFile(vscode.Uri.file(firstChunkFilePath));
-    const totalTokensContent = `Total tokens for all chunks: ${totalTokenCount}\n` + new TextDecoder("utf-8").decode(firstChunkFileContent);
-    await vscode.workspace.fs.writeFile(vscode.Uri.file(firstChunkFilePath), new TextEncoder().encode(totalTokensContent));
+    // Update the first chunk file with the total token count if the configuration is enabled
+    const includeTokenInfo = vscode.workspace.getConfiguration('ai-helpers').get<boolean>('includeTokenInfo');
+    if (includeTokenInfo) {
+        const firstChunkFilePath = `${rootPath}/Chunk-1.txt`;
+        const firstChunkFileContent = await vscode.workspace.fs.readFile(vscode.Uri.file(firstChunkFilePath));
+        const totalTokensContent = `Total tokens for all chunks: ${totalTokenCount}\n` + new TextDecoder("utf-8").decode(firstChunkFileContent);
+        await vscode.workspace.fs.writeFile(vscode.Uri.file(firstChunkFilePath), new TextEncoder().encode(totalTokensContent));
+    }
 }
