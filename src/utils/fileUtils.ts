@@ -1,9 +1,19 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import { TextEncoder } from 'util';
-import { getIgnoredFiles } from './configUtils';
+import { getIgnoredFiles, getConfigValue } from './configUtils';
 import { estimateTokens } from './chunkUtils';
 
+/**
+ * Writes a chunk of content to a file.
+ *
+ * @param {string} rootPath - The root directory path.
+ * @param {number} chunkIndex - The index of the chunk.
+ * @param {string} chunkContent - The content of the chunk.
+ * @param {string} separator - The separator used between files within the chunk.
+ * @param {number} [part] - Optional part number for large files split into multiple parts.
+ * @returns {Promise<void>} - A promise that resolves when the chunk has been written.
+ */
 export async function writeChunkToFile(
   rootPath: string,
   chunkIndex: number,
@@ -19,8 +29,8 @@ export async function writeChunkToFile(
       newFileUri = vscode.Uri.file(`${rootPath}/Chunk-${chunkIndex}.txt`);
     }
 
-    const includeTokenInfo = vscode.workspace.getConfiguration('ai-helpers').get<boolean>('includeTokenInfo');
-    const topSeparator = "#####\n"
+    const includeTokenInfo = getConfigValue<boolean>('includeTokenInfo', false);
+    const topSeparator = "#####\n";
     let chunkTokensContent = chunkContent;
 
     if (includeTokenInfo) {
@@ -38,23 +48,27 @@ export async function writeChunkToFile(
   } catch (error) {
     const message = `Error while writing chunk to file ${newFileUri ? newFileUri.fsPath : 'unknown'}: ${error}`;
     vscode.window.showErrorMessage(message);
+    console.error(message, error);
   }
 }
 
+/**
+ * Adds files in a directory recursively to a list of URIs.
+ *
+ * @param {vscode.Uri} uri - The URI of the directory or file to add.
+ * @returns {Promise<vscode.Uri[]>} - A promise that resolves with the list of file URIs.
+ */
 export async function addFilesInDir(uri: vscode.Uri): Promise<vscode.Uri[]> {
   const allFileUris: vscode.Uri[] = [];
   try {
     const fileStat = await vscode.workspace.fs.stat(uri);
     const ignoreFolderFiles = getIgnoredFiles();
 
-    // Get the configuration for excluding files and folders
-    const config = vscode.workspace.getConfiguration('ai-helpers');
-    const additionalFileTypes = (config.get<string>('useAdditionalFileTypes') || '')
+    const additionalFileTypes = getConfigValue<string>('useAdditionalFileTypes', '')
       .split(',')
       .map(ext => ext.trim().replace(/^['"]|['"]$/g, '')) // Remove surrounding quotes
       .map(ext => `.${ext.replace(/^\./, '')}`) // Ensure extensions start with a dot
       .filter(ext => ext.length > 1); // Filter out empty extensions
-
 
     const invalidExtensions = [
       ".DS_Store", ".exe", ".dll", ".bin", ".so", ".jpg", ".jpeg", ".png", ".gif", ".ico", ".svg",
@@ -91,7 +105,9 @@ export async function addFilesInDir(uri: vscode.Uri): Promise<vscode.Uri[]> {
       }
     }
   } catch (error) {
-    vscode.window.showInformationMessage(`Error while adding files from directory: ${error}`);
+    const message = `Error while adding files from directory ${uri.fsPath}: ${error}`;
+    vscode.window.showErrorMessage(message);
+    console.error(message, error);
   }
   return allFileUris;
 }
