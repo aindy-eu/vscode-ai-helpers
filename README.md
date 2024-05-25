@@ -22,13 +22,14 @@ const invalidExtensions = [
 ### Screenshots
 
 #### Settings for our 2 helpers
-<img src="images/settings.png" alt="Settings" width="600"/>
+<img src="https://raw.githubusercontent.com/aindy-eu/vscode-ai-helpers/main/images/settings.png" alt="Settings" width="600"/>
+
 
 #### Select files and folders for generating the chunk(s)
-<img src="images/split-content.png" alt="Settings" width="400"/>
+<img src="https://raw.githubusercontent.com/aindy-eu/vscode-ai-helpers/main/images/split-content.png" alt="Split content into chunks" width="400"/>
 
 #### Generate file and folder structure
-<img src="images/folder-structure.png" alt="Generate file and folder structure" width="600"/>
+<img src="https://raw.githubusercontent.com/aindy-eu/vscode-ai-helpers/main/images/folder-structure.png" alt="Generate file and folder structure" width="600"/>
 
 ## Usage
 
@@ -57,7 +58,7 @@ This extension contributes the following settings:
 
 ## Known Issues
 
-There are currently no known issues. Please report any issues you encounter on the [GitHub issues page](https://github.com/aindy-eu/aindy/ai-helpers/issues).
+There are currently no known issues. Please report any issues you encounter on the [GitHub issues page](https://github.com/aindy-eu/vscode-ai-helpers/issues).
 
 ## Release Notes
 
