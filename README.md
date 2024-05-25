@@ -22,14 +22,14 @@ const invalidExtensions = [
 ### Screenshots
 
 #### Settings for our 2 helpers
-<img src="https://raw.githubusercontent.com/aindy-eu/vscode-ai-helpers/main/images/settings.png" alt="Settings" width="600"/>
+<img src="https://raw.githubusercontent.com/aindy-eu/vscode-ai-helpers/main/images/settings.png" alt="Settings" width="800"/>
 
 
 #### Select files and folders for generating the chunk(s)
 <img src="https://raw.githubusercontent.com/aindy-eu/vscode-ai-helpers/main/images/split-content.png" alt="Split content into chunks" width="400"/>
 
 #### Generate file and folder structure
-<img src="https://raw.githubusercontent.com/aindy-eu/vscode-ai-helpers/main/images/folder-structure.png" alt="Generate file and folder structure" width="600"/>
+<img src="https://raw.githubusercontent.com/aindy-eu/vscode-ai-helpers/main/images/folder-structure.png" alt="Generate file and folder structure" width="800"/>
 
 ## Usage
 
