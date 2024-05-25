@@ -13,14 +13,29 @@ export function activate(context: vscode.ExtensionContext) {
 
     // Register the 'chunksFromFiles' command
     // The commandId parameter must match the command field in package.json
-    let chunksFromFilesDisposable = vscode.commands.registerCommand('ai-helpers.chunksFromFiles', chunksFromFiles);
+    let chunksFromFilesDisposable = vscode.commands.registerCommand('ai-helpers.chunksFromFiles', async (contextSelection, allSelections) => {
+        try {
+            await chunksFromFiles(contextSelection, allSelections);
+        } catch (error) {
+            const message = `Error executing chunksFromFiles command: ${error}`;
+            vscode.window.showErrorMessage(message);
+            console.error(message, error);
+        }
+    });
 
     // Register the 'createFolderFileStructure' command
-    let createFolderStructureDisposable = vscode.commands.registerCommand('ai-helpers.createFolderFileStructure', createFolderStructure);
-
+    let createFolderStructureDisposable = vscode.commands.registerCommand('ai-helpers.createFolderFileStructure', async () => {
+        try {
+            await createFolderStructure();
+        } catch (error) {
+            const message = `Error executing createFolderFileStructure command: ${error}`;
+            vscode.window.showErrorMessage(message);
+            console.error(message, error);
+        }
+    });
     // Push the disposables to the context's subscriptions
     context.subscriptions.push(chunksFromFilesDisposable, createFolderStructureDisposable);
 }
 
 // This method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() { }

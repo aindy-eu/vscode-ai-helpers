@@ -11,8 +11,8 @@ export async function writeChunkToFile(
   separator: string,
   part?: number
 ): Promise<void> {
+  let newFileUri;
   try {
-    let newFileUri;
     if (part) {
       newFileUri = vscode.Uri.file(`${rootPath}/Chunk-${chunkIndex}-Part-${part}.txt`);
     } else {
@@ -36,7 +36,8 @@ export async function writeChunkToFile(
 
     await vscode.workspace.fs.writeFile(newFileUri, new TextEncoder().encode(chunkTokensContent));
   } catch (error) {
-    vscode.window.showInformationMessage(`Error while writing chunk to file: ${error}`);
+    const message = `Error while writing chunk to file ${newFileUri ? newFileUri.fsPath : 'unknown'}: ${error}`;
+    vscode.window.showErrorMessage(message);
   }
 }
 

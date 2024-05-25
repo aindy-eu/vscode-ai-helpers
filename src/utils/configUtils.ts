@@ -6,13 +6,13 @@ const defaultConfig = {
 };
 
 export function getMaxTokensPerChunk(): number {
-  const maxTokens = vscode.workspace.getConfiguration('ai-helpers').get<number>('tokensBeforeSplitting') || defaultConfig.tokensBeforeSplitting;
-  return validateMaxTokens(maxTokens);
-}
+  const configValue = vscode.workspace.getConfiguration('ai-helpers').get<number>('tokensBeforeSplitting');
+  const maxTokens = configValue || defaultConfig.tokensBeforeSplitting;
 
-function validateMaxTokens(maxTokens: number): number {
   if (maxTokens <= 0) {
-    throw new Error('Invalid value for tokensBeforeSplitting. Must be a positive number.');
+    const message = 'Invalid value for tokensBeforeSplitting. Must be a positive number.';
+    vscode.window.showErrorMessage(message);
+    throw new Error(message);
   }
   return maxTokens;
 }
