@@ -1,8 +1,6 @@
 import * as vscode from 'vscode';
-import * as fs from 'fs';
-import * as path from 'path';
 import { TextDecoder, TextEncoder } from 'util';
-import { getMaxTokensPerChunk, getPrompt, getLargeFilePrompt, writeChunkToFile, estimateTokens, getPartContent, getRootPath, addFilesInDir, getRelativePath } from "./utils";
+import { getMaxTokensPerChunk, getPrompt, getLargeFilePrompt, writeChunkToFile, estimateTokens, getPartContent, getRootPath, addFilesInDir, getRelativePath } from './utils';
 
 // Function to handle splitting files into chunks for AI prompts
 export async function chunksFromFiles(contextSelection: vscode.Uri, allSelections: vscode.Uri[]) {

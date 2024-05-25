@@ -1,5 +1,5 @@
 {
-  "name": "aindy-ai-helpers",
+  "name": "ai-helpers",
   "displayName": "aindy AI Helpers",
   "description": "Split content from files into manageable chunks and create a detailed file and folder structure for AI prompts.",
   "version": "1.0.0",
@@ -12,12 +12,39 @@
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
+    "configuration": {
+      "title": "aindy AI Helpers",
+      "properties": {
+        "ai-helpers.tokensBeforeSplitting": {
+          "type": "number",
+          "default": 16000,
+          "description": "The number of characters before splitting into chunks."
+        },
+        "ai-helpers.createFolderFileStructure": {
+          "type": "string",
+          "default": "node_modules, .DS_Store, .git, .vscode, .expo, tmp",
+          "description": "Comma-separated list of files and folders to exclude when generating the folder structure."
+        }
+      }
+    },
     "commands": [
       {
-        "command": "aindy-ai-helpers.helloWorld",
-        "title": "Hello World"
+        "command": "ai-helpers.chunksFromFiles",
+        "title": "Generate Chunks from Files"
+      },
+      {
+        "command": "ai-helpers.createFolderFileStructure",
+        "title": "Generate Folder and File Structure"
       }
-    ]
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "ai-helpers.chunksFromFiles",
+          "group": "navigation"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
