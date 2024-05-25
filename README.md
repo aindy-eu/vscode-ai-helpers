@@ -12,7 +12,7 @@ I am a big fan of prompting feature-specific or bug-related code content that ca
 
 - **Split Content into Chunks**: Automatically split the content of selected files (and or folders with files) into smaller, manageable chunks based on a specified token limit.
 
-We ignore a bunch of files as default to avoid meaningless chunks.
+I ignore a bunch of files as default to avoid meaningless chunks.
 
 ```javascript
 const invalidExtensions = [
@@ -76,7 +76,7 @@ There are currently no known issues. Please report any issues you encounter on t
 ## Version 1.0.0 - 2024-05-25
 
 ### Highlights
-- **Initial Release**: We are excited to launch `aindy AI Helpers`, a powerful VS Code extension that helps you split content from files into manageable chunks and generate detailed file and folder structures for AI prompts.
+- **Initial Release**: I am excited to launch `aindy AI Helpers`, a powerful VS Code extension that helps you split content from files into manageable chunks and generate detailed file and folder structures for AI prompts.
 - **Chunk Splitting**: Automatically split the content of selected files into smaller, manageable chunks based on a specified token limit.
 - **Folder Structure Generation**: Create a detailed text representation of your project's file and folder structure, excluding specified files and directories.
 
