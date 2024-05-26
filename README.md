@@ -1,6 +1,6 @@
 # aindy AI Helpers
 
-`aindy AI Helpers` is a VSCode extension that I wrote in the early days of GPT (January 2022) to generate code-related parts (chunks) of my projects for instructing the AI.
+`aindy AI Helpers` is a VSCode extension that I wrote in the early days of GPT (2022) to generate code-related parts (chunks) of my projects for instructing the AI.
 
 Since I use this tool daily, I decided it was time to share it, hoping others will find it as useful as I do.
 
@@ -8,34 +8,24 @@ The token estimation feature was particularly handy with GPT-3.5 and its 4096 to
 
 I am a big fan of prompting feature-specific or bug-related code content that can be quickly generated with a right-click. This approach avoids overwhelming the AI with too much information and keeps the focus on a single task at a time.
 
+This extension is developed and tested on macOS, so I am not sure if it works seamlessly on Windows or Linux. Feel free to submit a pull request if you encounter any issues or have improvements to suggest!
+
 ## Features
 
 - **Split Content into Chunks**: Automatically split the content of selected files (and or folders with files) into smaller, manageable chunks based on a specified token limit.
 
-I ignore a bunch of files as default to avoid meaningless chunks.
-
-```javascript
-const invalidExtensions = [
-    ".DS_Store", ".exe", ".dll", ".bin", ".so", ".jpg", ".jpeg", ".png", ".gif", ".ico", ".svg",
-    ".mov", ".mp4", ".mp3", ".avi", ".mkv", ".webm", ".wav", ".flac", ".ogg", ".pdf", ".doc",
-    ".docx", ".ppt", ".pptx", ".xls", ".xlsx", ".zip", ".rar", ".tar", ".gz", ".7z", ".iso",
-    ".log", ".tmp", ".bak", ".swp", ".class", ".jar", ".war"
-];
-```
-
 - **Generate Folder Structure**: Create a detailed text representation of the file and folder structure in your workspace, excluding specified files and directories.
 
-### Screenshots
+## Screenshots
 
-#### Settings for our 2 helpers
-<img src="https://raw.githubusercontent.com/aindy-eu/vscode-ai-helpers/main/images/settings.png" alt="Settings" width="800"/>
-
-
-#### Select files and folders for generating the chunk(s)
+### Select files and folders for generating the chunk(s)
 <img src="https://raw.githubusercontent.com/aindy-eu/vscode-ai-helpers/main/images/split-content.png" alt="Split content into chunks" width="400"/>
 
-#### Generate file and folder structure
-<img src="https://raw.githubusercontent.com/aindy-eu/vscode-ai-helpers/main/images/folder-structure.png" alt="Generate file and folder structure" width="800"/>
+### Generate file and folder structure
+<img src="https://raw.githubusercontent.com/aindy-eu/vscode-ai-helpers/main/images/folder-structure.png" alt="Generate file and folder structure" />
+
+### Settings for our 2 helpers
+<img src="https://raw.githubusercontent.com/aindy-eu/vscode-ai-helpers/main/images/settings.png" alt="Settings" />
 
 ## Usage
 
@@ -43,6 +33,18 @@ const invalidExtensions = [
 1. Right-click on a file or folder in the Explorer view.
 2. Select `Generate Chunks from Files`.
 3. The content will be split into chunks based on the specified token limit and saved to the workspace root directory.
+
+### Ignored file types
+Default invalid file extensions and specific filenames to avoid meaningless chunks:
+
+```javascript
+const invalidExtensions = [
+    ".DS_Store", ".exe", ".dll", ".bin", ".so", ".jpg", ".jpeg", ".png", ".gif", ".ico", ".svg",
+    ".mov", ".mp4", ".mp3", ".avi", ".mkv", ".webm", ".wav", ".flac", ".ogg", ".pdf", ".doc",
+    ".docx", ".ppt", ".pptx", ".xls", ".xlsx", ".zip", ".rar", ".tar", ".gz", ".7z", ".iso",
+    ".log", ".tmp", ".bak", ".swp", ".class", ".jar", ".war", ".keep"
+];
+```
 
 ### Generate Folder Structure
 1. Open the Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P` on macOS).

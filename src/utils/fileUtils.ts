@@ -74,7 +74,7 @@ export async function addFilesInDir(uri: vscode.Uri): Promise<vscode.Uri[]> {
       ".DS_Store", ".exe", ".dll", ".bin", ".so", ".jpg", ".jpeg", ".png", ".gif", ".ico", ".svg",
       ".mov", ".mp4", ".mp3", ".avi", ".mkv", ".webm", ".wav", ".flac", ".ogg", ".pdf", ".doc",
       ".docx", ".ppt", ".pptx", ".xls", ".xlsx", ".zip", ".rar", ".tar", ".gz", ".7z", ".iso",
-      ".log", ".tmp", ".bak", ".swp", ".class", ".jar", ".war",
+      ".log", ".tmp", ".bak", ".swp", ".class", ".jar", ".keep", ".war",
       ...additionalFileTypes
     ];
 
