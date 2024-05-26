@@ -51,7 +51,7 @@
         "ai-helpers.useAdditionalFileTypes": {
           "type": "string",
           "default": "",
-          "description": "Comma-separated list of additional file extensions to include in the file processing. Example: 'py, java'"
+          "description": "Comma-separated list of additional file extensions that should not be used for the file chunking processing. Example: 'py, java'"
         }
       }
     },
