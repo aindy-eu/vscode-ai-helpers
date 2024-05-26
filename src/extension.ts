@@ -14,6 +14,14 @@ export function activate(context: vscode.ExtensionContext) {
   // Register the 'chunksFromFiles' command
   let chunksFromFilesDisposable = vscode.commands.registerCommand('ai-helpers.chunksFromFiles', async (contextSelection, allSelections) => {
     try {
+      if (!contextSelection || !contextSelection.fsPath) {
+        vscode.window.showInformationMessage(
+          "No file or folder selected. " +
+          "This helper does not work as a command. " +
+          "Please right-click on a file or folder to use this command."
+        );
+        return;
+      }
       await chunksFromFiles(contextSelection, allSelections);
     } catch (error) {
       const message = `Error executing chunksFromFiles command: ${error}`;

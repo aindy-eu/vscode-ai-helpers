@@ -57,6 +57,10 @@
     },
     "commands": [
       {
+        "command": "ai-helpers.chunksFromFiles",
+        "title": "Generate Chunks from Files"
+      },
+      {
         "command": "ai-helpers.createFolderFileStructure",
         "title": "Generate Folder and File Structure"
       }
