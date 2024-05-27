@@ -71,7 +71,7 @@ This extension contributes the following settings:
 
 ## Known Issues
 
-There are currently no known issues. Please report any issues you encounter on the [GitHub issues page](https://github.com/aindy-eu/vscode-ai-helpers/issues).
+Don't use the chunks to files helper for thousands of files (like those in 'node_modules'). Please report any other issues you encounter on the [GitHub issues page](https://github.com/aindy-eu/vscode-ai-helpers/issues).
 
 ## Release Notes
 
